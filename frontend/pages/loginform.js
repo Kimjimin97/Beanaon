@@ -81,7 +81,7 @@ const LoginForm = () => {
               type="primary"
               loading={logInLoading}
               onClick={onSubmitForm}
-              className="w-full transform text-white rounded-sm bg-[#42DDBB] py-2 font-bold hover:bg-indigo-400"
+              className="w-full mt-3 transform outline outline-offset-0 text-white rounded-sm bg-[#42DDBB] py-2 font-bold hover:bg-white hover:text-[#42DDBB] "
             >
               로그인
             </button>

@@ -193,7 +193,8 @@ const Signup = () => {
 
             <div className="text-sm  ">
               <label htmlFor="remember" className="font-medium text-[#979797]">
-                &nbsp;&nbsp;회원가입에 동의합니다.
+                &nbsp;&nbsp;회원가입시 배나온 서비스 이용 약관 및 개인정보정책에
+                동의하게 됩니다.
               </label>
             </div>
           </div>

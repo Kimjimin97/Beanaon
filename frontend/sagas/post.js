@@ -24,6 +24,7 @@ import {
   LOAD_POSTCARDS_REQUEST,
   LOAD_POSTCARDS_SUCCESS,
 } from "../reducers/post";
+
 import { backUrl } from "../config/config";
 
 //게시글 올리기
@@ -79,13 +80,21 @@ function* addPost(action) {
 // 게시글들 불러오기
 
 function loadPostsAPI(data) {
-  return axios.get(backUrl + `/api/map/${data}/posts`);
+  const access = window.localStorage.getItem("access_token");
+  console.log("acces", typeof data);
+  return axios.get(backUrl + `/api/posts/search/category/?search=${data}`, {
+    headers: {
+      Authorization: `Bearer ${access}`,
+    },
+  });
 }
 
 function* loadPosts(action) {
   try {
-    console.log();
-    const result = yield call(loadPostsAPI, action.data);
+    console.log("통신시작", action.data.category);
+    const result = yield call(loadPostsAPI, action.data.category);
+    console.log("data", result.data);
+    s;
     yield put({
       type: LOAD_POSTS_SUCCESS,
       data: result.data,

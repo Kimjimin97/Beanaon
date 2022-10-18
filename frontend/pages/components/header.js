@@ -27,8 +27,8 @@ export default function Header() {
 
   return (
     <>
-      <header className=" bg-[#42DDBB] pl-10 text-white body-font">
-        <div className=" container pl-20 pr-10 pt-5 bt-3 flex justify-between  flex flex-wrap flex-col md:flex-row items-center">
+      <header className=" bg-[#42DDBB] h-20 text-white body-font">
+        <div className="container pt-5  flex justify-between  flex flex-wrap flex-col md:flex-row items-center">
           <a
             className="text-white flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
             href="/#"
@@ -41,7 +41,7 @@ export default function Header() {
             <a className="font mr-5 hover:text-gray-900" href="/#">
               Home
             </a>
-            <a className="mr-5 hover:text-gray-900" href="/postForm">
+            <a className="mr-5 hover:text-gray-900" href="/posts">
               게시글
             </a>
             <a className="mr-5 hover:text-gray-900" href="/postForm">
