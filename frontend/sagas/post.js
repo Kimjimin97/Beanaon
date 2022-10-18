@@ -24,13 +24,12 @@ import {
   LOAD_POSTCARDS_REQUEST,
   LOAD_POSTCARDS_SUCCESS,
 } from "../reducers/post";
-import {backUrl} from "../config/config";
+import { backUrl } from "../config/config";
 
 //게시글 올리기
 function addPostAPI(data) {
-
   const access = window.localStorage.getItem("access_token");
-  
+
   return axios.post(backUrl + "/api/posts/create/", data.send, {
     headers: {
       Authorization: `Bearer ${access}`,
@@ -38,13 +37,12 @@ function addPostAPI(data) {
   });
 }
 
-function refreshToken(){
+function refreshToken() {
   const refresh = window.localStorage.getItem("refresh_token");
   return axios.post("http://127.0.0.1:8000/api/user/refresh/", {
-    refresh : refresh
+    refresh: refresh,
   });
 }
-
 
 function* addPost(action) {
   try {
@@ -54,20 +52,20 @@ function* addPost(action) {
       type: ADD_POST_SUCCESS,
       data: result.data,
     });
-    window.localStorage.setItem('post_success', "true");
+    window.localStorage.setItem("post_success", "true");
   } catch (err) {
     console.error(err);
-    if(err.response.status == 403){
-      try{
+    if (err.response.status == 403) {
+      try {
         const result1 = yield call(refreshToken);
-        
-        window.localStorage.setItem('access_token', result1.data.access);
-   
+
+        window.localStorage.setItem("access_token", result1.data.access);
+
         yield call(addPostAPI, action.data);
         action.data.access_token = result1.data.access;
-        window.localStorage.setItem('post_success', "true");
-      } catch (err){
-        console.log("로그인 페이지로 돌아가!")
+        window.localStorage.setItem("post_success", "true");
+      } catch (err) {
+        console.log("로그인 페이지로 돌아가!");
         window.localStorage.clear();
         yield put({
           type: ADD_POST_FAILURE,
@@ -75,7 +73,6 @@ function* addPost(action) {
         });
       }
     }
-  
   }
 }
 
@@ -149,8 +146,8 @@ function* addComment(action) {
     });
     window.localStorage.setItem("comment_success", "true");
   } catch (err) {
-    if(err.response.status == 403){
-      try{
+    if (err.response.status == 403) {
+      try {
         const result1 = yield call(refreshToken);
         yield put({
           type: ADD_COMMENT_FAILURE,
@@ -158,13 +155,13 @@ function* addComment(action) {
         });
         console.log("갱신된 엑세스", result1.data.access);
         console.log("엑세스 토큰 갱신 하기");
-        window.localStorage.setItem('access_token', result1.data.access);
+        window.localStorage.setItem("access_token", result1.data.access);
         console.log("갱신한 엑세스 토큰으로 다시 페이지 접근");
         yield call(addPostAPI, action.data);
         action.data.access_token = result1.data.access;
         window.localStorage.setItem("comment_success", "true");
-      } catch (err){
-        console.log("로그인 페이지로 돌아가!")
+      } catch (err) {
+        console.log("로그인 페이지로 돌아가!");
         window.localStorage.clear();
         yield put({
           type: ADD_COMMENT_FAILURE,
