@@ -85,10 +85,11 @@ const LoginForm = () => {
             >
               로그인
             </button>
-
-            {/* <a href={KAKAO_AUTH_URL}>
-              <img src="../../kakao_logo.png" class="center" />
-            </a> */}
+            <div class="w-full">
+              <a href={KAKAO_AUTH_URL}>
+                <img src="/kakao_logo.png" class="center" />
+              </a>
+            </div>
             <div className="flex items-center justify-center">
               <a
                 href="#"
