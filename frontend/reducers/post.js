@@ -120,6 +120,7 @@ const reducer = (state = initialState, action) =>
         draft.loadPostError = null;
         break;
       case LOAD_POST_SUCCESS:
+        // console.log("success", action.data);
         draft.loadPostLoading = false;
         draft.loadPostDone = true;
         draft.singlePost = action.data;
@@ -136,11 +137,10 @@ const reducer = (state = initialState, action) =>
       case LOAD_POSTS_SUCCESS:
         draft.loadPostsLoading = false;
         draft.loadPostsDone = true;
+
         draft.mainPosts = draft.mainPosts.concat(action.data);
 
         // if (draft.mainPosts.length < 1) {
-        //   console.log("통신", action.data);
-        //   console.log("통신2", action.data.posts);
         //   draft.mainPosts = draft.mainPosts.concat(action.data);
         // }
         break;

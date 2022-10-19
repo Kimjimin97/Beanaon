@@ -81,7 +81,7 @@ function* addPost(action) {
 
 function loadPostsAPI(data) {
   const access = window.localStorage.getItem("access_token");
-  console.log("acces", typeof data);
+  console.log(1);
   return axios.get(backUrl + `/api/posts/search/category/?search=${data}`, {
     headers: {
       Authorization: `Bearer ${access}`,
@@ -91,10 +91,8 @@ function loadPostsAPI(data) {
 
 function* loadPosts(action) {
   try {
-    console.log("통신시작", action.data.category);
     const result = yield call(loadPostsAPI, action.data.category);
-    console.log("data", result.data);
-    s;
+    console.log("result", result.data);
     yield put({
       type: LOAD_POSTS_SUCCESS,
       data: result.data,

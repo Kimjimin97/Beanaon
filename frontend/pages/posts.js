@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import Header from "../pages/components/header";
-import PostCard from "../pages/postCard";
+import PostCardnew from "../pages/newpostCard";
 import { LOAD_POSTS_REQUEST } from "../reducers/post";
 import { END } from "redux-saga";
 import { useRouter } from "next/router";
@@ -24,7 +24,7 @@ const Posts = () => {
   useEffect(() => {
     dispatch({
       type: LOAD_POSTS_REQUEST,
-      data: { category: "한식" },
+      data: { category: "a" },
     });
   }, []);
 
@@ -56,12 +56,12 @@ const Posts = () => {
               href={{
                 pathname: `/postForm`,
                 query: {
-                  address: JSON.stringify(mainPosts[0].address[0]),
+                  address: JSON.stringify(mainPosts[0].addressname[0]),
                   id: id,
                 },
               }}
-            > */}
-            {/* 글쓰기
+            >
+              글쓰기
             </Link> */}
           </a>
           <div className="mb-3 block text-base font-medium text-[#6B7280]">
@@ -71,18 +71,21 @@ const Posts = () => {
             </div> */}
           </div>
         </div>
-        <div className="grid grid-cols-2">
-          {/* {mainPosts[0].posts.map((content) => {
-            return (
-              <PostCard
-                key={content.id}
-                post={{
-                  content,
-                  address: mainPosts[0].address[0],
-                }}
-              />
-            );
-          })} */}
+        <div className="">
+          <div className="flex flex-col space-y-4">
+            {mainPosts.map((content) => {
+              return (
+                <div class="mb-3">
+                  <PostCardnew
+                    key={content.id}
+                    post={{
+                      content,
+                    }}
+                  />
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
