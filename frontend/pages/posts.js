@@ -48,7 +48,7 @@ const Posts = () => {
 
       <div class=" mx-auto w-full max-w-[700px]">
         <div className="m-3 flex justify-between">
-          <a
+          {/* <a
             className="
                m-3 col-start-7 col-span-1 items-center py-2.5 px-4 text-base font-medium text-center text-white bg-[#6A64F1] rounded-lg hover:bg-[#5f57ff] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
@@ -63,7 +63,7 @@ const Posts = () => {
             >
               글쓰기
             </Link> */}
-          </a>
+          {/* </a> */}
           <div className="mb-3 block text-base font-medium text-[#6B7280]">
             {/* <div>{mainPosts[0].address[0].addressname}</div>
             <div className="float-right">

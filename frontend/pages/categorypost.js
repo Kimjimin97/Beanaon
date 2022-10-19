@@ -9,7 +9,7 @@ import { END } from "redux-saga";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-const Post = () => {
+const categoryPost = () => {
   return (
     <div>
       <Header />
@@ -26,8 +26,18 @@ const Post = () => {
 
         <div class="w-[52rem] mx-auto ">
           <div class="flex flex-nowrap space-x-4 m-5">
-            <a href="">
-              <img src="한식.png"></img>
+            <a>
+              <Link
+                href={{
+                  pathname: `/posts`,
+                  query: {
+                    // address: JSON.stringify(post.address),
+                    category: "a",
+                  },
+                }}
+              >
+                <img src="한식.png"></img>
+              </Link>
             </a>
             <div clas="">
               <img src="중식.png"></img>
@@ -54,4 +64,4 @@ const Post = () => {
   );
 };
 
-export default Post;
+export default categoryPost;
