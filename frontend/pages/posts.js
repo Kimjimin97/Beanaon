@@ -9,10 +9,10 @@ import { END } from "redux-saga";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-const Posts = () => {
+const Posts = ({}) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { id } = router.query;
+  const { ids } = router.query;
   const { mainPosts, loadPostsDone } = useSelector((state) => state.post);
   const { postcards, setpostcards } = useState([]);
   const { token, setToken } = useState("");
@@ -21,14 +21,14 @@ const Posts = () => {
   //     setToken(localStorage.getItem("access_token"));
   //   }, []);
 
+  const category = router.query.category;
+
   useEffect(() => {
     dispatch({
       type: LOAD_POSTS_REQUEST,
-      data: { category: "a" },
+      data: { category: category },
     });
-  }, []);
-
-  console.log(mainPosts);
+  }, [category]);
 
   return (
     <div>
@@ -39,9 +39,8 @@ const Posts = () => {
           <div class=" text-2xl">
             <div class="font-custom h-7 flex m-8 ">
               <div class="">카테고리</div> <div>&nbsp;선택 </div>{" "}
-              <div class="text-[#42DDBB]">&nbsp;일식 </div>
+              <div class="text-[#42DDBB]">&nbsp;{category} </div>
             </div>
-            <div class="font-custom h-7 text-center mb-5">음식종류</div>
           </div>
         </div>
       </div>

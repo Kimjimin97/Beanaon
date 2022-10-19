@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Header from "../../pages/components/header";
-import Comment from "../../pages/comment";
-import { LOAD_POST_REQUEST, REMOVE_POST_REQUEST } from "../../reducers/post";
+import Header from "../pages/components/header";
+import Comment from "../pages/comment";
+import { LOAD_POST_REQUEST, REMOVE_POST_REQUEST } from "../reducers/post";
 import { useRouter } from "next/router";
-import CommentForm from "../../pages/commentForm";
+import CommentForm from "../pages/commentForm";
 import Link from "next/link";
 
 const Content = ({}) => {
@@ -28,6 +28,7 @@ const Content = ({}) => {
   const [commentText, setCommentText] = useState("");
 
   // const access_token = `"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJ1c2VybmFtZSI6InNqYTk3MDdAZGF1bS5uZXQiLCJleHAiOjE2NjMxNjExMzAsImVtYWlsIjoic2phOTcwN0BkYXVtLm5ldCJ9.tqnzK4CCn-wLGUmNJJdf81HUlvXgjP2t2sWt3XkMWCE"`;
+  const address_id = 1;
 
   const onChangeText = (e) => {
     e.preventDefault();
@@ -52,8 +53,6 @@ const Content = ({}) => {
       data: id,
     });
   }, [id, singlePost]);
-
-  console.log(singlePost);
 
   return (
     <div>
@@ -81,12 +80,11 @@ const Content = ({}) => {
               class="rounded-xl inline-block text-[17px] outline outline-offset-0 border-0 px-9 py-3 bg-[#FFD15C] text-white hover:bg-[#FFD15C] hover:text-white focus:bg-[#FFD15C] focus:text-white "
             >
               한식
-              {/* {singlePost.category} */}
             </button>
             <div className=" text-[#555555] title-font font-light mb-1">
-              {/* 2020-10-17 22:48:00 */}
+              2020-10-17 22:48:00
               {/* {singlePost.updated_at.split("T")[0]}{" "}
-              {singlePost.updated_at.split("T")[1].split(".")[0]} */}
+                  {singlePost.updated_at.split("T")[1].split(".")[0]} */}
             </div>
           </div>
 
@@ -96,7 +94,6 @@ const Content = ({}) => {
               className="mb-5 font-custom text-[25px] block text-base font-medium text-[#07074D]"
             >
               저랑 연어초밥 같이 시켜먹어요
-              {/* {singlePost.title} */}
             </label>
             <p
               rows="9"
@@ -104,16 +101,15 @@ const Content = ({}) => {
               class="w-full h-40 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#42DDBB] "
             >
               연어초밥 시키실 분 구합니다
-              {/* {singlePost.content} */}
             </p>
           </div>
           <div className=" mt-10">
             <div className="">{/* <p>{singlePost.content}</p> */}</div>
 
             <CommentForm post_id={id} />
-            {singlePost.comments.map((c) => {
+            {/* {singlePost.comments.map((c) => {
               return <Comment key={c.id} comments={c} />;
-            })}
+            })} */}
           </div>
         </div>
       </div>

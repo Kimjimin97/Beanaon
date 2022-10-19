@@ -3,8 +3,6 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 
 const PostCardnew = ({ post }) => {
-  console.log("전달되는 것", post.content);
-  console.log("post", post.content.id);
   const [day, time] = post.content.updated_at.split("T");
   const hours = time.split(".")[0].split(":")[0];
   const minutes = time.split(".")[0].split(":")[1];
