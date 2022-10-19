@@ -16,10 +16,13 @@ const Posts = ({}) => {
   const { mainPosts, loadPostsDone } = useSelector((state) => state.post);
   const { postcards, setpostcards } = useState([]);
   const { token, setToken } = useState("");
-
-  //   useEffect(() => {
-  //     setToken(localStorage.getItem("access_token"));
-  //   }, []);
+  const map1 = new Map();
+  map1.set("a", "한식");
+  map1.set("b", "중식");
+  map1.set("c", "일식");
+  map1.set("d", "치킨");
+  map1.set("e", "분식");
+  map1.set("f", "카페/디저트");
 
   const category = router.query.category;
 
@@ -29,7 +32,7 @@ const Posts = ({}) => {
       data: { category: category },
     });
   }, [category]);
-
+  // &nbsp;
   return (
     <div>
       <Header />
@@ -38,8 +41,8 @@ const Posts = ({}) => {
         <div class="flex justify-center m-3 ">
           <div class=" text-2xl">
             <div class="font-custom h-7 flex m-8 ">
-              <div class="">카테고리</div> <div>&nbsp;선택 </div>{" "}
-              <div class="text-[#42DDBB]">&nbsp;{category} </div>
+              <div class="text-[#42DDBB]">&nbsp;{map1.get(category)} </div>
+              <div>을 원하는 이웃들 </div>{" "}
             </div>
           </div>
         </div>

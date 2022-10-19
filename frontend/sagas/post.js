@@ -47,6 +47,7 @@ function refreshToken() {
 
 function* addPost(action) {
   try {
+    console.log("data", result.data);
     const result = yield call(addPostAPI, action.data);
 
     yield put({

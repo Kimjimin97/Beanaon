@@ -26,9 +26,7 @@ const Comment = ({ comments }) => {
           </h2>
         </div>
         <div>
-          <div className="ml-20 whitespace-pre-line ...">
-            {comments.content}
-          </div>
+          <div className="ml-3 whitespace-pre-line ...">{comments.content}</div>
         </div>
       </div>
     </div>

@@ -40,22 +40,82 @@ const categoryPost = () => {
               </Link>
             </a>
             <div clas="">
-              <img src="중식.png"></img>
+              <a>
+                <Link
+                  href={{
+                    pathname: `/posts`,
+                    query: {
+                      // address: JSON.stringify(post.address),
+                      category: "b",
+                    },
+                  }}
+                >
+                  <img src="중식.png"></img>
+                </Link>
+              </a>
             </div>
             <div clas="">
-              <img src="일식.png"></img>
+              <a>
+                <Link
+                  href={{
+                    pathname: `/posts`,
+                    query: {
+                      // address: JSON.stringify(post.address),
+                      category: "c",
+                    },
+                  }}
+                >
+                  <img src="일식.png"></img>
+                </Link>
+              </a>
             </div>
           </div>
 
           <div class="flex flex-nowrap space-x-4 m-5">
             <div clas="hover-">
-              <img src="치킨.png"></img>
+              <a>
+                <Link
+                  href={{
+                    pathname: `/posts`,
+                    query: {
+                      // address: JSON.stringify(post.address),
+                      category: "d",
+                    },
+                  }}
+                >
+                  <img src="치킨.png"></img>
+                </Link>
+              </a>
             </div>
             <div clas="">
-              <img src="분식.png"></img>
+              <a>
+                <Link
+                  href={{
+                    pathname: `/posts`,
+                    query: {
+                      // address: JSON.stringify(post.address),
+                      category: "e",
+                    },
+                  }}
+                >
+                  <img src="분식.png"></img>
+                </Link>
+              </a>
             </div>
             <div clas="">
-              <img src="디저트.png"></img>
+              <a>
+                <Link
+                  href={{
+                    pathname: `/posts`,
+                    query: {
+                      // address: JSON.stringify(post.address),
+                      category: "f",
+                    },
+                  }}
+                >
+                  <img src="디저트.png"></img>
+                </Link>
+              </a>
             </div>
           </div>
         </div>

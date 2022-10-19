@@ -42,7 +42,7 @@ const CommentForm = ({ post_id }) => {
       <div className="mb-2">
         <label
           for="message"
-          className="mb-3 font-custom text-[25px] block text-base font-medium text-[#07074D]"
+          className="mb-3 font-custom text-[26px] block text-base font-medium text-[#07074D]"
         >
           댓글
         </label>

@@ -20,10 +20,10 @@ export default function Hero() {
           </div>
           <div className="pl-4">
             <a
-              href="./map"
+              href="./categorypost"
               className="pl-10 text-xl inline-flex border-2 border-white rounded-full text-white border-1 py-2 px-6 focus:outline-none hover:bg-white hover:text-[#42DDBB] rounded text-lg"
             >
-              배달비 아끼러가기
+              내 주변 이웃들과 배달비 나누러가기
               <svg
                 class="w-5 ml-2"
                 fill="currentColor"

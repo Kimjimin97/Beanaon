@@ -138,11 +138,11 @@ const reducer = (state = initialState, action) =>
         draft.loadPostsLoading = false;
         draft.loadPostsDone = true;
 
-        draft.mainPosts = draft.mainPosts.concat(action.data);
+        // draft.mainPosts = draft.mainPosts.concat(action.data);
 
-        // if (draft.mainPosts.length < 1) {
-        //   draft.mainPosts = draft.mainPosts.concat(action.data);
-        // }
+        if (draft.mainPosts.length < 1) {
+          draft.mainPosts = draft.mainPosts.concat(action.data);
+        }
         break;
       case LOAD_POSTS_FAILURE:
         draft.loadPostsLoading = false;
