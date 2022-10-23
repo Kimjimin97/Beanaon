@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import pymysql
 pymysql.install_as_MySQLdb()
 
-
 from datetime import timedelta
 from pathlib import Path
 import my_settings
@@ -191,6 +190,6 @@ INTERNAL_IPS = [
     # ...
 ]
 
-CORS_ORIGIN_WHITELIST = ('http://0.0.0.1:3000', 'http://localhost:3000', "http://3.36.170.120:8080", "http://baenaon.com", "http://www.baenaon.com")
+CORS_ORIGIN_WHITELIST = ('http://127.0.0.1:8080','http://0.0.0.1:8080', 'http://localhost:8080', "http://3.36.170.120:8080", "http://baenaon.com", "http://www.baenaon.com")
 
 CORS_ALLOW_CREDENTIALS = True

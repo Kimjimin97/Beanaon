@@ -15,8 +15,8 @@ class Post(models.Model):
             )
     category = models.CharField(
         verbose_name='category',
-        max_length = 20,
-        default='음식'
+        max_length = 2,
+        default='a'
     )
     address = models.ForeignKey(
         Address,

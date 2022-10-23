@@ -7,6 +7,7 @@ const PostCardnew = ({ post }) => {
   const hours = time.split(".")[0].split(":")[0];
   const minutes = time.split(".")[0].split(":")[1];
   const seconds = time.split(".")[0].split(":")[2];
+
   return (
     <a className="">
       <Link
@@ -27,7 +28,7 @@ const PostCardnew = ({ post }) => {
           </div>
           <div class="w-30 pt-4">
             <div class="text-[#555555]  ">
-              어제부터 연어 초밥이 너무 먹고 싶었는데 같이 먹을 사람이 없어요
+              {post.content.content.slice(0, 30)}
             </div>
           </div>
           <div class="relative">

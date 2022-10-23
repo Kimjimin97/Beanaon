@@ -1,6 +1,7 @@
 from rest_framework import generics, status, filters
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
+from django.http import JsonResponse
 
 from map.models import Address
 
@@ -18,16 +19,17 @@ class PostCreate(generics.CreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
+        print(request.data)
         serializer = PostCreateSerializer(data=request.data)
-        address = Address.objects.get(id=request.data['address_id'])
-
+        address = Address.objects.filter(addressname=request.data['address'])
+        print(address)
         if serializer.is_valid():
             post = Post.objects.create(
                 user_id=request.user.id,
                 title=request.data['title'],
                 content=request.data['content'],
                 category=request.data['category'],
-                address=address
+                address=address[0]
             )
 
             return Response(serializer.data, status=status.HTTP_200_OK)
@@ -86,7 +88,7 @@ class CategorySearchListView(generics.ListAPIView):
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     # SearchFilter
     search_fields = ['category']
-    ordering_fields = ['-updated_at']
+    ordering = ['-updated_at']
 
 class UserCommentsList(generics.ListAPIView):
     serializer_class = CommentSerializer
@@ -98,3 +100,35 @@ class UserCommentsList(generics.ListAPIView):
             return Comment.objects.filter(user=user)
         else:
             return Comment.objects.none()
+
+class NearTheUserPosts(generics.ListAPIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        try:
+            user = self.request.user
+            # 유저의 주소
+            user_address = user.address
+            # 유저의 주소를 경도, 위도로 변환한 값
+            user_lat, user_long = user.lat, user.long
+            LATMOD = 109.958489129649955
+            LONGMOD = 88.74
+            addresses = Address.objects.all()
+            result = []
+            for address in addresses:
+                if user_lat - 1/LATMOD <= address.lat <= user_lat + 1/LATMOD and \
+                        user_long - 1/LONGMOD <= user_long <= user_long + 1/LONGMOD :
+                    for post in Post.objects.filter(address_id=address.id):
+                        result.append({
+                            'id': post.id,
+                            'username': post.user.nickname,
+                            'title': post.title,
+                            'category': post.category,
+                            'content': post.content,
+                            'created_at': post.created_at,
+                            'updated_at': post.updated_at,
+
+                        })
+            return JsonResponse({'result': result}, status=status.HTTP_200_OK)
+        except KeyError:
+            return JsonResponse({'err_msg': 'KEY_ERROR'}, stauts=status.HTTP_400_BAD_REQUEST)

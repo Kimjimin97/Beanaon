@@ -90,14 +90,13 @@ def kakao_login(request):
     return redirect(
         f"https://kauth.kakao.com/oauth/authorize?client_id={client_id}&redirect_uri={redirect_uri}&response_type=code&scope=account_email"
     )
-
 def kakao_callback(request):
-    client_id = my_settings.KAKAO_REST_API_KEY
-    code = request.GET.get("code")
-    redirect_uri = "http://127.0.0.1:8000/api/user/login/kakao/callback/"
-    token_request = requests.get(
-        f"https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id={client_id}&redirect_uri={redirect_uri}&code={code}"
-    )
+    client_id = "b2591ba5c1ea35054b56c6152c7d0d77"
+    code = request.GET.get("code", None)
+    print(code)
+    redirect_uri = "http://baenaon.com/oauth/callback/kakao"
+    token_request = requests.get( f"https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id={client_id}&redirect_uri={redirect_uri}&code={code}" )
+    print(token_request.json())
     token_json = token_request.json()
 
     kakao_access_token = token_json.get("access_token")
@@ -154,4 +153,3 @@ def kakao_callback(request):
         return JsonResponse(results, status=status.HTTP_201_CREATED)
     else:
         return JsonResponse({'message':'user already exist'}, status=status.HTTP_400_BAD_REQUEST)
-

@@ -60,8 +60,6 @@ const Content = ({}) => {
     });
   }, [id, singlePost]);
 
-  console.log(singlePost);
-
   return (
     <div>
       {singlePost ? (
@@ -94,7 +92,7 @@ const Content = ({}) => {
               <p
                 rows="9"
                 id="message"
-                class="w-full h-40 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#42DDBB] "
+                class="w-full break-words whitespace-pre-wrap h-40 rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#42DDBB] "
               >
                 {singlePost.content}
               </p>

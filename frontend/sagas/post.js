@@ -47,14 +47,12 @@ function refreshToken() {
 
 function* addPost(action) {
   try {
-    console.log("data", result.data);
     const result = yield call(addPostAPI, action.data);
 
     yield put({
       type: ADD_POST_SUCCESS,
       data: result.data,
     });
-    window.localStorage.setItem("post_success", "true");
   } catch (err) {
     console.error(err);
     if (err.response.status == 403) {
@@ -65,7 +63,6 @@ function* addPost(action) {
 
         yield call(addPostAPI, action.data);
         action.data.access_token = result1.data.access;
-        window.localStorage.setItem("post_success", "true");
       } catch (err) {
         console.log("로그인 페이지로 돌아가!");
         window.localStorage.clear();
@@ -82,7 +79,7 @@ function* addPost(action) {
 
 function loadPostsAPI(data) {
   const access = window.localStorage.getItem("access_token");
-  console.log(1);
+  
   return axios.get(backUrl + `/api/posts/search/category/?search=${data}`, {
     headers: {
       Authorization: `Bearer ${access}`,

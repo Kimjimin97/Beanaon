@@ -9,7 +9,7 @@ import { END } from "redux-saga";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-const mainPosts = [{ title: "치킨", address: "지민집" ,posts:{"제목":}}];
+// const mainPosts = [{ title: "치킨", address: "지민집" ,posts:{"제목":}}];
 const PostCards = () => {
   const dispatch = useDispatch();
   const router = useRouter();

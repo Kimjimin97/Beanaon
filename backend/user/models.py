@@ -2,12 +2,15 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+
+
 from post.models import Post
+
 
 
 class UserManager(BaseUserManager):
 
-    def create_user(self, email, nickname, address, password):
+    def create_user(self, email, nickname, address, lat, long, password):
 
         if not email:
             raise ValueError('must have user email')
@@ -15,21 +18,26 @@ class UserManager(BaseUserManager):
         if not nickname:
             raise ValueError('must have user nickname')
 
+
         user = self.model(
             email=self.normalize_email(email),
             nickname=nickname,
-            address=address
+            address=address,
+            lat=lat,
+            long=long
         )
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_staff(self, email, nickname, address, password):
+    def create_staff(self, email, nickname, address, lat, long, password):
         user = self.create_user(
             email,
             nickname=nickname,
             address=address,
-            password=password
+            password=password,
+            lat=lat,
+            long=long
 
         )
         user.is_staff = True
@@ -37,12 +45,14 @@ class UserManager(BaseUserManager):
         return user
 
 
-    def create_superuser(self, email, nickname, address, password):
+    def create_superuser(self, email, nickname, address, lat, long, password):
         user = self.create_user(
                 email,
                 nickname = nickname,
                 address = address,
-                password = password
+                password = password,
+                lat = lat,
+                long = long
                 )
         user.is_staff = True
         user.is_superuser = True
@@ -73,11 +83,20 @@ class User(AbstractBaseUser,  PermissionsMixin):
         unique=True
     )
     address = models.CharField(
-        verbose_name='address',
-        max_length=200,
-        default=""
+        verbose_name='address_name',
+        max_length=100,
+        default='NoAddress'
     )
-
+    lat = models.FloatField(
+        verbose_name='lat',
+        blank=True,
+        null=True,
+    )
+    long = models.FloatField(
+        verbose_name='long',
+        blank=True,
+        null=True,
+    )
     login_method = models.CharField(
         max_length=6, choices=LOGIN_CHOICES, default=LOGIN_EMAIL
     )
@@ -95,3 +114,7 @@ class User(AbstractBaseUser,  PermissionsMixin):
 
     class Meta:
         db_table = 'users'
+
+
+    def __str__(self):
+        return self.nickname

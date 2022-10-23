@@ -55,10 +55,10 @@ export const LOAD_ALLPOST_SUCCESS = "LOAD_ALLPOST_SUCCESS";
 export const LOAD_ALLPOST_FAILURE = "LOAD_ALLPOST_FAILURE";
 
 // 액션 정의 addPost를 실행하면 ADD_POST_REQUEST 액션이 실행된다.
-// export const addPost = (data) => ({
-//   type: ADD_POST_REQUEST,
-//   data,
-// });
+export const addPost = (data) => ({
+  type: ADD_POST_REQUEST,
+  data,
+});
 
 export const addComment = (data) => ({
   type: ADD_COMMENT_REQUEST,
